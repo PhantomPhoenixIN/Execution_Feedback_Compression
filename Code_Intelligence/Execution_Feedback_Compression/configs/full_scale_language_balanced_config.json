@@ -1,0 +1,23 @@
+{
+  "run_id": "full_scale_lang_balanced_98k_001",
+  "input": "../Datasets/Project_CodeNet/final_codenet_bugfix_pairs_alllangs_with_diffs.jsonl",
+  "languages": ["Python", "Java", "C++", "C"],
+  "error_types": ["WA", "CE", "RE", "TLE", "MLE"],
+  "cell_targets": "configs/full_scale_language_balanced_targets.json",
+  "design": "Equal total records per language, with WA/CE/RE/TLE/MLE retained as explicit strata. Python CE is unavailable; MLE uses all available filtered records and remaining budget is assigned to other error types.",
+  "target_records_per_language": 24500,
+  "target_total_records": 98000,
+  "seed": 20260622,
+  "split_unit": "problem_id",
+  "split_ratios": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "filters": {
+    "require_tests": true,
+    "max_buggy_code_chars": 5000,
+    "max_fixed_code_chars": 5000,
+    "max_patch_chars": 2000
+  }
+}

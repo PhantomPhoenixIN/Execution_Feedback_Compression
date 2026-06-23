@@ -1,0 +1,41 @@
+{
+  "run_id": "full_scale_multilang_001",
+  "dataset_path": "../Datasets/Project_CodeNet/final_codenet_bugfix_pairs_alllangs_with_diffs.jsonl",
+  "problem_descriptions_path": "../Datasets/Project_CodeNet/problem_description_en.jsonl",
+  "languages": ["Python", "Java", "C++"],
+  "statuses": ["Wrong Answer", "Runtime Error", "Time Limit Exceeded", "Compile Error"],
+  "per_language_status": {
+    "Python": {
+      "Wrong Answer": 2500,
+      "Runtime Error": 2500,
+      "Time Limit Exceeded": 2500
+    },
+    "Java": {
+      "Wrong Answer": 2500,
+      "Runtime Error": 2500,
+      "Time Limit Exceeded": 2500,
+      "Compile Error": 2500
+    },
+    "C++": {
+      "Wrong Answer": 2500,
+      "Runtime Error": 2500,
+      "Time Limit Exceeded": 2500,
+      "Compile Error": 2500
+    }
+  },
+  "split": {
+    "unit": "problem_id",
+    "train_ratio": 0.8,
+    "validation_ratio": 0.1,
+    "test_ratio": 0.1,
+    "seed": 20260622
+  },
+  "filters": {
+    "require_tests": true,
+    "max_buggy_code_chars": 5000,
+    "max_fixed_code_chars": 5000,
+    "max_patch_chars": 2000
+  },
+  "feedback_formats": ["none", "raw", "categorical", "localized", "structured", "natural_language"],
+  "notes": "Conference-scale balanced fraction. Splits are by problem_id to prevent problem leakage across train/dev/test and across languages."
+}

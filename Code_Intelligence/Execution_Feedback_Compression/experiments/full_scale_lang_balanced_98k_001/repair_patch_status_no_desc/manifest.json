@@ -1,0 +1,112 @@
+{
+  "builder": "patch",
+  "sample_dir": "experiments\\full_scale_lang_balanced_98k_001\\samples",
+  "feedback_dir": "experiments\\full_scale_lang_balanced_98k_001\\feedback_status",
+  "include_description": false,
+  "max_code_chars": 5000,
+  "max_feedback_chars": 1200,
+  "max_patch_chars": 2000,
+  "splits": {
+    "train": {
+      "seed": 42,
+      "test_ratio": 0.2,
+      "include_description": false,
+      "formats": [
+        "none",
+        "raw",
+        "categorical",
+        "localized",
+        "structured",
+        "natural_language"
+      ],
+      "base_records": 78069,
+      "split_name": "train",
+      "split_records": {
+        "train": 78069
+      },
+      "observed_status_counts": {
+        "Wrong Answer": 19904,
+        "Time Limit Exceeded": 19530,
+        "Compile Error": 13949,
+        "Runtime Error": 19988,
+        "Memory Limit Exceeded": 3795,
+        "WA: Presentation Error": 903
+      },
+      "skipped": {
+        "patch_too_long": 1431,
+        "empty_patch": 531
+      },
+      "target": "line_patch"
+    },
+    "validation": {
+      "seed": 42,
+      "test_ratio": 0.2,
+      "include_description": false,
+      "formats": [
+        "none",
+        "raw",
+        "categorical",
+        "localized",
+        "structured",
+        "natural_language"
+      ],
+      "base_records": 9299,
+      "split_name": "validation",
+      "split_records": {
+        "validation": 9299
+      },
+      "observed_status_counts": {
+        "Compile Error": 1560,
+        "Runtime Error": 2647,
+        "Wrong Answer": 2087,
+        "Time Limit Exceeded": 2614,
+        "Memory Limit Exceeded": 355,
+        "WA: Presentation Error": 36
+      },
+      "skipped": {
+        "patch_too_long": 170,
+        "empty_patch": 48
+      },
+      "target": "line_patch"
+    },
+    "test": {
+      "seed": 42,
+      "test_ratio": 0.2,
+      "include_description": false,
+      "formats": [
+        "none",
+        "raw",
+        "categorical",
+        "localized",
+        "structured",
+        "natural_language"
+      ],
+      "base_records": 8171,
+      "split_name": "test",
+      "split_records": {
+        "test": 8171
+      },
+      "observed_status_counts": {
+        "Runtime Error": 2189,
+        "Time Limit Exceeded": 2019,
+        "Wrong Answer": 2020,
+        "Compile Error": 1371,
+        "Memory Limit Exceeded": 536,
+        "WA: Presentation Error": 36
+      },
+      "skipped": {
+        "patch_too_long": 222,
+        "empty_patch": 59
+      },
+      "target": "line_patch"
+    }
+  },
+  "formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ]
+}

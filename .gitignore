@@ -1,0 +1,56 @@
+# Large/private datasets
+Code_Intelligence/Datasets/
+**/Datasets/
+
+# Experiment outputs that are too large or reproducible
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/model_runs/
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/checkpoints/
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/model/
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.bin
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.safetensors
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.pt
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.pth
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.ckpt
+
+# External benchmark downloads should be scripted, not vendored
+Code_Intelligence/Execution_Feedback_Compression/external/
+
+# Large generated repair-data JSONL files
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.jsonl
+
+# Generated figures will be added only after final results are ready
+Code_Intelligence/Execution_Feedback_Compression/experiments/**/paper_artifacts/figures/
+
+# Old pilot/full-scale run folders are retained locally but not versioned
+Code_Intelligence/Execution_Feedback_Compression/experiments/pilot_*/
+Code_Intelligence/Execution_Feedback_Compression/experiments/full_scale_multilang_001/
+Code_Intelligence/Execution_Feedback_Compression/experiments/full_scale_multilang_100k_001/
+
+# LaTeX/build intermediates
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Python/cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.matplotlib_cache/
+
+# Local installers/temp files
+Git-*-64-bit.exe
+*.tmp
+*.bak
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/

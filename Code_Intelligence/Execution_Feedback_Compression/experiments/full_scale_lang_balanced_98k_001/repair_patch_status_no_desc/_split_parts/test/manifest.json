@@ -1,0 +1,31 @@
+{
+  "seed": 42,
+  "test_ratio": 0.2,
+  "include_description": false,
+  "formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ],
+  "base_records": 8171,
+  "split_name": "test",
+  "split_records": {
+    "test": 8171
+  },
+  "observed_status_counts": {
+    "Runtime Error": 2189,
+    "Time Limit Exceeded": 2019,
+    "Wrong Answer": 2020,
+    "Compile Error": 1371,
+    "Memory Limit Exceeded": 536,
+    "WA: Presentation Error": 36
+  },
+  "skipped": {
+    "patch_too_long": 222,
+    "empty_patch": 59
+  },
+  "target": "line_patch"
+}

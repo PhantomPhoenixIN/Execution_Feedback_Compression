@@ -1,0 +1,34 @@
+{
+  "run_group": "codet5_patch_feedback_sweep_balanced_98k",
+  "dataset": "experiments/full_scale_lang_balanced_98k_001/repair_patch_status_no_desc",
+  "target": "line_patch",
+  "model": "Salesforce/codet5-small",
+  "seed": 42,
+  "epochs": 1,
+  "batch_size": 4,
+  "learning_rate": 0.00005,
+  "max_source_length": 512,
+  "max_target_length": 256,
+  "generation_max_length": 256,
+  "num_beams": 4,
+  "repetition_penalty": 1.2,
+  "save_steps": 100,
+  "feedback_conditions": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ],
+  "selection_protocol": {
+    "validation": "Generate validation predictions for all six feedback conditions.",
+    "test": "Evaluate the held-out test split only after selecting/reporting the planned comparison set.",
+    "reporting": "Report full-program and line-patch results separately, with WA/CE/RE/TLE/MLE breakdowns."
+  },
+  "resume_policy": {
+    "training": "Rerunning the same command resumes from the latest checkpoint unless --overwrite is passed.",
+    "generation": "Prediction files append missing record IDs unless --overwrite is passed.",
+    "evaluation": "Generation diagnostics and execution evaluation are generated into separate files."
+  }
+}

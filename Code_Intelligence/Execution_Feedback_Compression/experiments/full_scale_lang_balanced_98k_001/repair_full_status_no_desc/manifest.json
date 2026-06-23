@@ -1,0 +1,97 @@
+{
+  "builder": "full",
+  "sample_dir": "experiments\\full_scale_lang_balanced_98k_001\\samples",
+  "feedback_dir": "experiments\\full_scale_lang_balanced_98k_001\\feedback_status",
+  "include_description": false,
+  "max_code_chars": 5000,
+  "max_feedback_chars": 1200,
+  "max_patch_chars": null,
+  "splits": {
+    "train": {
+      "seed": 42,
+      "test_ratio": 0.2,
+      "include_description": false,
+      "formats": [
+        "none",
+        "raw",
+        "categorical",
+        "localized",
+        "structured",
+        "natural_language"
+      ],
+      "base_records": 80031,
+      "split_name": "train",
+      "split_records": {
+        "train": 80031
+      },
+      "observed_status_counts": {
+        "Wrong Answer": 20107,
+        "Time Limit Exceeded": 20359,
+        "Compile Error": 14182,
+        "Runtime Error": 20316,
+        "Memory Limit Exceeded": 4163,
+        "WA: Presentation Error": 904
+      }
+    },
+    "validation": {
+      "seed": 42,
+      "test_ratio": 0.2,
+      "include_description": false,
+      "formats": [
+        "none",
+        "raw",
+        "categorical",
+        "localized",
+        "structured",
+        "natural_language"
+      ],
+      "base_records": 9517,
+      "split_name": "validation",
+      "split_records": {
+        "validation": 9517
+      },
+      "observed_status_counts": {
+        "Compile Error": 1588,
+        "Runtime Error": 2689,
+        "Wrong Answer": 2106,
+        "Time Limit Exceeded": 2726,
+        "Memory Limit Exceeded": 372,
+        "WA: Presentation Error": 36
+      }
+    },
+    "test": {
+      "seed": 42,
+      "test_ratio": 0.2,
+      "include_description": false,
+      "formats": [
+        "none",
+        "raw",
+        "categorical",
+        "localized",
+        "structured",
+        "natural_language"
+      ],
+      "base_records": 8452,
+      "split_name": "test",
+      "split_records": {
+        "test": 8452
+      },
+      "observed_status_counts": {
+        "Runtime Error": 2224,
+        "Time Limit Exceeded": 2146,
+        "Wrong Answer": 2041,
+        "Compile Error": 1403,
+        "Memory Limit Exceeded": 601,
+        "WA: Presentation Error": 37
+      }
+    }
+  },
+  "formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ]
+}

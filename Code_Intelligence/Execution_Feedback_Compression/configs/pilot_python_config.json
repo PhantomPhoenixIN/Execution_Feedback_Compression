@@ -1,0 +1,24 @@
+{
+  "run_id": "pilot_python_001",
+  "dataset_path": "../Datasets/Project_CodeNet/final_codenet_bugfix_pairs_alllangs_with_diffs.jsonl",
+  "problem_descriptions_path": "../Datasets/Project_CodeNet/problem_description_en.jsonl",
+  "problem_tests_path": "../Datasets/Project_CodeNet/problem_tests.json",
+  "language": "Python",
+  "statuses": [
+    "Runtime Error",
+    "Wrong Answer",
+    "Time Limit Exceeded"
+  ],
+  "sample_size_per_status": 100,
+  "random_seed": 42,
+  "feedback_formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ],
+  "max_execution_seconds": 5,
+  "notes": "Initial Python pilot because Python runtime is available. Java pilot will be added after JDK setup."
+}

@@ -1,0 +1,31 @@
+{
+  "seed": 42,
+  "test_ratio": 0.2,
+  "include_description": false,
+  "formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ],
+  "base_records": 78069,
+  "split_name": "train",
+  "split_records": {
+    "train": 78069
+  },
+  "observed_status_counts": {
+    "Wrong Answer": 19904,
+    "Time Limit Exceeded": 19530,
+    "Compile Error": 13949,
+    "Runtime Error": 19988,
+    "Memory Limit Exceeded": 3795,
+    "WA: Presentation Error": 903
+  },
+  "skipped": {
+    "patch_too_long": 1431,
+    "empty_patch": 531
+  },
+  "target": "line_patch"
+}

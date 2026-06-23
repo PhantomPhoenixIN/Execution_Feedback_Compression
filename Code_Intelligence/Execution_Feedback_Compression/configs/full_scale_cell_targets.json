@@ -1,0 +1,19 @@
+{
+  "Python": {
+    "Wrong Answer": 2500,
+    "Runtime Error": 2500,
+    "Time Limit Exceeded": 2500
+  },
+  "Java": {
+    "Wrong Answer": 2500,
+    "Runtime Error": 2500,
+    "Time Limit Exceeded": 2500,
+    "Compile Error": 2500
+  },
+  "C++": {
+    "Wrong Answer": 2500,
+    "Runtime Error": 2500,
+    "Time Limit Exceeded": 2500,
+    "Compile Error": 2500
+  }
+}

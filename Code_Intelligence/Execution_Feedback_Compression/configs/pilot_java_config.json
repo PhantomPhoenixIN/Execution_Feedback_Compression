@@ -1,0 +1,24 @@
+{
+  "run_id": "pilot_java_001",
+  "dataset_path": "../Datasets/Project_CodeNet/final_codenet_bugfix_pairs_alllangs_with_diffs.jsonl",
+  "problem_descriptions_path": "../Datasets/Project_CodeNet/problem_description_en.jsonl",
+  "problem_tests_path": "../Datasets/Project_CodeNet/problem_tests.json",
+  "language": "Java",
+  "statuses": [
+    "Compile Error",
+    "Runtime Error",
+    "Wrong Answer"
+  ],
+  "sample_size_per_status": 100,
+  "random_seed": 42,
+  "feedback_formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ],
+  "max_execution_seconds": 5,
+  "notes": "Initial smoke/pilot configuration. Increase sample_size_per_status only after execution pipeline is validated."
+}

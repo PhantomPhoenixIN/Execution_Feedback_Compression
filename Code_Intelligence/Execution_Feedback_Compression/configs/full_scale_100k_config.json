@@ -1,0 +1,28 @@
+{
+  "run_id": "full_scale_multilang_100k_001",
+  "input": "../Datasets/Project_CodeNet/final_codenet_bugfix_pairs_alllangs_with_diffs.jsonl",
+  "languages": ["Python", "Java", "C++", "C"],
+  "error_types": ["WA", "CE", "RE", "TLE", "MLE"],
+  "cell_targets": "configs/full_scale_100k_cell_targets.json",
+  "seed": 20260622,
+  "split_unit": "problem_id",
+  "split_ratios": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "filters": {
+    "require_tests": true,
+    "max_buggy_code_chars": 5000,
+    "max_fixed_code_chars": 5000,
+    "max_patch_chars": 2000
+  },
+  "feedback_formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ]
+}

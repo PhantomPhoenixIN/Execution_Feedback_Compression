@@ -1,0 +1,26 @@
+{
+  "seed": 42,
+  "test_ratio": 0.2,
+  "include_description": false,
+  "formats": [
+    "none",
+    "raw",
+    "categorical",
+    "localized",
+    "structured",
+    "natural_language"
+  ],
+  "base_records": 9517,
+  "split_name": "validation",
+  "split_records": {
+    "validation": 9517
+  },
+  "observed_status_counts": {
+    "Compile Error": 1588,
+    "Runtime Error": 2689,
+    "Wrong Answer": 2106,
+    "Time Limit Exceeded": 2726,
+    "Memory Limit Exceeded": 372,
+    "WA: Presentation Error": 36
+  }
+}

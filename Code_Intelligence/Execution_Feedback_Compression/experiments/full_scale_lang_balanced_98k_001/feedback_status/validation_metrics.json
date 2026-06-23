@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-06-22T05:27:43.388622+00:00",
+  "records": 9517,
+  "language_status": {
+    "C::Compile Error": 543,
+    "C::Runtime Error": 689,
+    "Java::Runtime Error": 629,
+    "C++::Compile Error": 557,
+    "Python::Wrong Answer": 687,
+    "C::Time Limit Exceeded": 740,
+    "Python::Time Limit Exceeded": 800,
+    "Java::Compile Error": 488,
+    "Python::Runtime Error": 805,
+    "C++::Runtime Error": 566,
+    "C::Wrong Answer": 458,
+    "Java::Time Limit Exceeded": 654,
+    "C++::Time Limit Exceeded": 532,
+    "C++::Memory Limit Exceeded": 285,
+    "Java::Wrong Answer": 468,
+    "C++::Wrong Answer": 493,
+    "Java::Memory Limit Exceeded": 58,
+    "Python::Memory Limit Exceeded": 23,
+    "C::WA: Presentation Error": 26,
+    "Java::WA: Presentation Error": 5,
+    "C::Memory Limit Exceeded": 6,
+    "Python::WA: Presentation Error": 4,
+    "C++::WA: Presentation Error": 1
+  },
+  "feedback_source": "judge_status_and_diff_metadata"
+}

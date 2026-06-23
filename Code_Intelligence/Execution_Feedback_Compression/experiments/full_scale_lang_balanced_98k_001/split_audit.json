@@ -1,0 +1,229 @@
+{
+  "sample_dir": "experiments\\full_scale_lang_balanced_98k_001\\samples",
+  "splits": {
+    "train": {
+      "records": 80031,
+      "problems": 1991,
+      "language": {
+        "Python": 20067,
+        "Java": 20205,
+        "C": 20025,
+        "C++": 19734
+      },
+      "status": {
+        "Wrong Answer": 20107,
+        "Time Limit Exceeded": 20359,
+        "Compile Error": 14182,
+        "Runtime Error": 20316,
+        "Memory Limit Exceeded": 4163,
+        "WA: Presentation Error": 904
+      },
+      "error_type": {
+        "WA": 21011,
+        "TLE": 20359,
+        "CE": 14182,
+        "RE": 20316,
+        "MLE": 4163
+      },
+      "language_status": {
+        "Python::Wrong Answer": 6662,
+        "Java::Time Limit Exceeded": 4783,
+        "Java::Compile Error": 4928,
+        "C::Time Limit Exceeded": 4792,
+        "C::Runtime Error": 4905,
+        "C++::Wrong Answer": 4210,
+        "C++::Time Limit Exceeded": 4169,
+        "Java::Wrong Answer": 4660,
+        "C++::Memory Limit Exceeded": 2976,
+        "Python::Time Limit Exceeded": 6615,
+        "C::Wrong Answer": 4575,
+        "C++::Runtime Error": 4152,
+        "C::Memory Limit Exceeded": 135,
+        "Python::Runtime Error": 6493,
+        "C++::Compile Error": 4181,
+        "C::Compile Error": 5073,
+        "Java::Runtime Error": 4766,
+        "C::WA: Presentation Error": 545,
+        "Python::Memory Limit Exceeded": 268,
+        "Java::WA: Presentation Error": 284,
+        "Java::Memory Limit Exceeded": 784,
+        "Python::WA: Presentation Error": 29,
+        "C++::WA: Presentation Error": 46
+      },
+      "language_error_type": {
+        "Python::WA": 6691,
+        "Java::TLE": 4783,
+        "Java::CE": 4928,
+        "C::TLE": 4792,
+        "C::RE": 4905,
+        "C++::WA": 4256,
+        "C++::TLE": 4169,
+        "Java::WA": 4944,
+        "C++::MLE": 2976,
+        "Python::TLE": 6615,
+        "C::WA": 5120,
+        "C++::RE": 4152,
+        "C::MLE": 135,
+        "Python::RE": 6493,
+        "C++::CE": 4181,
+        "C::CE": 5073,
+        "Java::RE": 4766,
+        "Python::MLE": 268,
+        "Java::MLE": 784
+      }
+    },
+    "validation": {
+      "records": 9517,
+      "problems": 249,
+      "language": {
+        "C": 2462,
+        "Java": 2302,
+        "C++": 2434,
+        "Python": 2319
+      },
+      "status": {
+        "Compile Error": 1588,
+        "Runtime Error": 2689,
+        "Wrong Answer": 2106,
+        "Time Limit Exceeded": 2726,
+        "Memory Limit Exceeded": 372,
+        "WA: Presentation Error": 36
+      },
+      "error_type": {
+        "CE": 1588,
+        "RE": 2689,
+        "WA": 2142,
+        "TLE": 2726,
+        "MLE": 372
+      },
+      "language_status": {
+        "C::Compile Error": 543,
+        "C::Runtime Error": 689,
+        "Java::Runtime Error": 629,
+        "C++::Compile Error": 557,
+        "Python::Wrong Answer": 687,
+        "C::Time Limit Exceeded": 740,
+        "Python::Time Limit Exceeded": 800,
+        "Java::Compile Error": 488,
+        "Python::Runtime Error": 805,
+        "C++::Runtime Error": 566,
+        "C::Wrong Answer": 458,
+        "Java::Time Limit Exceeded": 654,
+        "C++::Time Limit Exceeded": 532,
+        "C++::Memory Limit Exceeded": 285,
+        "Java::Wrong Answer": 468,
+        "C++::Wrong Answer": 493,
+        "Java::Memory Limit Exceeded": 58,
+        "Python::Memory Limit Exceeded": 23,
+        "C::WA: Presentation Error": 26,
+        "Java::WA: Presentation Error": 5,
+        "C::Memory Limit Exceeded": 6,
+        "Python::WA: Presentation Error": 4,
+        "C++::WA: Presentation Error": 1
+      },
+      "language_error_type": {
+        "C::CE": 543,
+        "C::RE": 689,
+        "Java::RE": 629,
+        "C++::CE": 557,
+        "Python::WA": 691,
+        "C::TLE": 740,
+        "Python::TLE": 800,
+        "Java::CE": 488,
+        "Python::RE": 805,
+        "C++::RE": 566,
+        "C::WA": 484,
+        "Java::TLE": 654,
+        "C++::TLE": 532,
+        "C++::MLE": 285,
+        "Java::WA": 473,
+        "C++::WA": 494,
+        "Java::MLE": 58,
+        "Python::MLE": 23,
+        "C::MLE": 6
+      }
+    },
+    "test": {
+      "records": 8452,
+      "problems": 249,
+      "language": {
+        "C": 2013,
+        "Python": 2114,
+        "C++": 2332,
+        "Java": 1993
+      },
+      "status": {
+        "Runtime Error": 2224,
+        "Time Limit Exceeded": 2146,
+        "Wrong Answer": 2041,
+        "Compile Error": 1403,
+        "Memory Limit Exceeded": 601,
+        "WA: Presentation Error": 37
+      },
+      "error_type": {
+        "RE": 2224,
+        "TLE": 2146,
+        "WA": 2078,
+        "CE": 1403,
+        "MLE": 601
+      },
+      "language_status": {
+        "C::Runtime Error": 492,
+        "C::Time Limit Exceeded": 554,
+        "Python::Wrong Answer": 674,
+        "C++::Compile Error": 455,
+        "Python::Time Limit Exceeded": 644,
+        "Java::Runtime Error": 498,
+        "Python::Runtime Error": 760,
+        "C++::Memory Limit Exceeded": 468,
+        "Java::Time Limit Exceeded": 456,
+        "C++::Runtime Error": 474,
+        "Java::Compile Error": 478,
+        "C::WA: Presentation Error": 23,
+        "C++::Time Limit Exceeded": 492,
+        "Java::Wrong Answer": 466,
+        "C::Compile Error": 470,
+        "C++::Wrong Answer": 442,
+        "C::Wrong Answer": 459,
+        "Python::Memory Limit Exceeded": 34,
+        "Java::Memory Limit Exceeded": 84,
+        "Java::WA: Presentation Error": 11,
+        "C::Memory Limit Exceeded": 15,
+        "Python::WA: Presentation Error": 2,
+        "C++::WA: Presentation Error": 1
+      },
+      "language_error_type": {
+        "C::RE": 492,
+        "C::TLE": 554,
+        "Python::WA": 676,
+        "C++::CE": 455,
+        "Python::TLE": 644,
+        "Java::RE": 498,
+        "Python::RE": 760,
+        "C++::MLE": 468,
+        "Java::TLE": 456,
+        "C++::RE": 474,
+        "Java::CE": 478,
+        "C::WA": 482,
+        "C++::TLE": 492,
+        "Java::WA": 477,
+        "C::CE": 470,
+        "C++::WA": 443,
+        "Python::MLE": 34,
+        "Java::MLE": 84,
+        "C::MLE": 15
+      }
+    }
+  },
+  "problem_overlap_counts": {
+    "train_vs_validation": 0,
+    "train_vs_test": 0,
+    "validation_vs_test": 0
+  },
+  "problem_overlaps": {
+    "train_vs_validation": [],
+    "train_vs_test": [],
+    "validation_vs_test": []
+  },
+  "leakage_free": true
+}

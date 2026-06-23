@@ -1,0 +1,212 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\title{Execution Feedback Compression for Efficient Neural Program Repair}
+
+\author{
+\IEEEauthorblockN{Deepak Naik M. V. and J. Swaminathan}
+\IEEEauthorblockA{
+Department of Computer Science and Engineering\\
+Amrita School of Computing, Amrita Vishwa Vidyapeetham\\
+Amritapuri, India\\
+}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Execution feedback from compilers, runtimes, and test cases provides valuable information for automatic program repair, but raw feedback is often verbose, noisy, and inconsistent across languages and execution environments. This work investigates whether compressed representations of execution feedback can preserve repair-relevant information while reducing context length and improving neural repair effectiveness. We compare raw feedback against categorical, localized, structured, and natural-language compressed variants under controlled repair settings.
+\end{abstract}
+
+\begin{IEEEkeywords}
+automatic program repair, neural code intelligence, execution feedback, compiler diagnostics, program repair, feedback compression
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Automatic program repair aims to transform incorrect programs into correct ones. Recent neural repair systems increasingly use execution feedback, such as compiler errors, runtime exceptions, and failed test outcomes, to guide repair generation. However, raw execution feedback may contain redundant paths, environment-specific details, long stack traces, and messages that are not directly useful for repair.
+
+This paper studies execution feedback compression as a supervision and prompting strategy for neural program repair. The central hypothesis is that compressed feedback can preserve the information needed for repair while reducing input length and noise.
+
+\section{Research Questions}
+
+\textbf{RQ1: Information sufficiency.} Which components of execution feedback are necessary and sufficient for neural program repair?
+
+\textbf{RQ2: Compression-efficiency tradeoff.} How much can execution feedback be compressed before repair performance degrades?
+
+\textbf{RQ3: Error-type dependence.} Do different bug categories require different feedback information, such as localization for runtime errors and counterexamples for wrong answers?
+
+\textbf{RQ4: Model dependence.} Are feedback-compression effects consistent across model families and prompting or fine-tuning settings?
+
+\textbf{RQ5: Generalization.} Do feedback-compression effects generalize beyond the primary Project CodeNet-derived dataset to external repair benchmarks?
+
+\section{Feedback Representations}
+
+We compare the following feedback settings:
+
+\begin{itemize}
+    \item \textbf{None:} The model receives only the buggy program.
+    \item \textbf{Raw:} The model receives the full compiler, runtime, or test feedback.
+    \item \textbf{Categorical:} The feedback is reduced to an error category and normalized error class.
+    \item \textbf{Localized:} The feedback includes error type, line number, and nearby source-code context.
+    \item \textbf{Structured:} Feedback is represented as machine-readable fields such as error type, line, symbol, and normalized message.
+    \item \textbf{Natural Language:} Feedback is rewritten as a short human-readable explanation.
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\caption{Feedback representations compared in the study. All repair targets are evaluated under the same six feedback conditions.}
+\label{tab:feedback-representations}
+\begin{tabular}{@{}p{0.28\linewidth}p{0.62\linewidth}@{}}
+\toprule
+Condition & Information provided to the repair model \\
+\midrule
+None & Buggy code only. \\
+Raw & Uncompressed status, diagnostic, or failure text. \\
+Categorical & Normalized error type such as WA, CE, RE, TLE, or MLE. \\
+Localized & Error type plus available line or diff-span context. \\
+Structured & Machine-readable fields for error type, location, and normalized message. \\
+Natural Language & Short human-readable explanation of the failure. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Dataset Construction}
+
+The study uses a Project CodeNet-derived bug-fix dataset containing user error submissions paired with the user's first accepted solution. Each record includes a problem identifier, user identifier, programming language, buggy submission, accepted solution, buggy execution status, code diffs, and test cases when available.
+
+An initial inventory of the local dataset contains 2,223,631 bug-fix records, of which 2,156,595 include embedded test cases. The largest languages are C++ with 1,293,708 records, Python with 510,007 records, C with 130,164 records, and Java with 123,534 records. The main buggy status categories are Wrong Answer, Runtime Error, Time Limit Exceeded, Compile Error, and Presentation Error.
+
+The large-scale corpus used in this study contains 98,000 records sampled from Python, Java, C++, and C, with exactly 24,500 records per language. Sampling is stratified by language and normalized online-judge failure category. We explicitly separate Wrong Answer (WA), Compile Error (CE), Runtime Error (RE), Time Limit Exceeded (TLE), and Memory Limit Exceeded (MLE). MLE is retained as a separate rare stratum rather than merged into an ``other'' category. Python has no compile-error stratum in the filtered corpus, so its language budget is assigned to WA, RE, TLE, and MLE. We use problem-level splits to prevent the same programming task from appearing in both training and evaluation. An automated split audit found zero overlapping problem identifiers across the train, validation, and test splits.
+
+\input{experiments/full_scale_lang_balanced_98k_001/paper_artifacts/tables/dataset_splits.tex}
+
+\input{experiments/full_scale_lang_balanced_98k_001/paper_artifacts/tables/language_error_matrix.tex}
+
+\input{experiments/full_scale_lang_balanced_98k_001/paper_artifacts/tables/split_error_matrix.tex}
+
+\input{experiments/full_scale_lang_balanced_98k_001/paper_artifacts/tables/feedback_length_validation.tex}
+
+\section{Methodology}
+
+For each buggy program, we execute the program against available tests and collect feedback. The feedback is then transformed into multiple representations. Repair generation is evaluated under identical conditions across feedback variants.
+
+\subsection{Pipeline}
+
+The implementation uses a streaming pipeline so that large JSONL datasets do not need to be loaded into memory. Records are selected using bounded reservoir sampling within language-status cells, then assigned to train, validation, and test splits by problem identifier. For the multilingual corpus, feedback is derived from online-judge status and diff metadata so that all three languages can be processed consistently before compiler toolchains are introduced. Execution-grade Python feedback and compiler-backed Java/C++ feedback are treated as stricter follow-up settings rather than prerequisites for corpus construction.
+
+\begin{enumerate}
+    \item Stream bug-fix records from the dataset.
+    \item Select records matching the target languages, error categories, code-length limits, and test availability requirements.
+    \item Split records by problem identifier into train, validation, and test sets.
+    \item Convert status and diff metadata into raw, categorical, localized, structured, and natural-language feedback variants.
+    \item Build full-program repair targets and line-patch repair targets.
+    \item Store feedback artifacts, repair datasets, and split audits for downstream repair experiments.
+\end{enumerate}
+
+\subsection{Execution Feedback Collection}
+
+The multilingual feedback pipeline records online-judge status, language, diff-span metadata, and normalized feedback fields. When language toolchains are available, the stricter execution pipeline additionally records compile status, runtime status, test outcomes, error messages, stack traces, failing line information where available, and execution result categories.
+
+\subsection{Feedback Compression}
+
+Raw feedback is transformed using deterministic rules in the pilot phase. Later experiments may compare rule-based compression with model-generated compression.
+
+\subsection{Repair Generation}
+
+Repair generation uses two target formulations. In full-program repair, the model generates the complete accepted solution. In line-patch repair, the model generates a compact edit script that is applied to the buggy program. The current line-patch corpus contains 78,069 training instances, 9,299 validation instances, and 8,171 test instances after excluding empty patches and patches longer than the configured maximum. Training and evaluation scripts are resume-safe: interrupted model training resumes from the latest checkpoint, and generation or evaluation reruns append only missing record identifiers unless explicitly overwritten.
+
+\section{Evaluation Metrics}
+
+We evaluate:
+
+\begin{itemize}
+    \item compile success rate,
+    \item execution pass rate,
+    \item Pass@1,
+    \item feedback token length,
+    \item compression ratio,
+    \item repair edit distance,
+    \item performance by error category.
+\end{itemize}
+
+\section{Large-Scale Study Design}
+
+The final study is designed as a large-scale controlled experiment rather than a pilot report. Pilot experiments are used only to refine the pipeline, select feasible models, and identify threats to validity; pilot values are not reported as evidence in the paper.
+
+\subsection{Primary Dataset}
+
+The primary analysis uses the 98,000-record Project CodeNet-derived multilingual repair corpus described in Tables~\ref{tab:dataset-splits}--\ref{tab:split-error-matrix}. Records are filtered to retain submissions with buggy code, accepted code, language metadata, online-judge status, code-diff metadata, and available tests. Dataset-level online-judge labels are retained as the common multilingual feedback source. Locally observed execution behavior is used in stricter language-specific analyses where the required runtime or compiler toolchain is available.
+
+\subsection{Experimental Conditions}
+
+For each repair instance, the same buggy program and evaluation tests will be paired with multiple feedback representations: no feedback, raw feedback, categorical feedback, localized feedback, structured feedback, and natural-language compressed feedback. All feedback conditions will be evaluated on identical train/test splits and identical model settings. The study will include both full-program repair and edit-oriented repair targets where feasible.
+
+\subsection{Models and Baselines}
+
+The large-scale analysis will include at least three baseline families:
+
+\begin{itemize}
+    \item \textbf{No-feedback repair:} the model receives only the buggy program.
+    \item \textbf{Raw-feedback repair:} the model receives uncompressed execution feedback.
+    \item \textbf{Compressed-feedback repair:} the model receives categorical, localized, structured, or natural-language compressed feedback.
+\end{itemize}
+
+Model families will include a compact fine-tuned code model and at least one instruction-tuned code model. The no-feedback and raw-feedback conditions are necessary baselines: compressed feedback is only useful if it improves over no feedback or preserves raw-feedback performance at substantially lower context cost. Validation results are used for model and feedback-condition selection; the held-out test split is reserved for final reporting.
+
+\subsection{Statistical Analysis}
+
+Because every feedback condition is evaluated on the same repair instances, the main comparisons are paired. We will report Pass@1 with confidence intervals, exact McNemar tests for paired correctness differences, and effect sizes based on discordant pairs. Results will be stratified by locally observed failure type, code length, feedback length, and repair edit size.
+
+\subsection{External Validation}
+
+To test generalization beyond the primary corpus, the study will include an external benchmark such as QuixBugs. External validation will be treated separately from the primary CodeNet-derived analysis because the benchmark distribution, tests, and repair style differ from competitive-programming submission histories.
+
+\section{Expected Result Tables}
+
+The final manuscript will report only large-scale results. Tables will include: dataset statistics after filtering, feedback compression statistics, repair performance by feedback representation and model family, paired statistical comparisons, error-type stratification, and external benchmark performance.
+
+\begin{table*}[t]
+\centering
+\caption{Planned repair-effectiveness breakdown. Each cell will report Pass@1 with confidence intervals on the held-out test split.}
+\label{tab:planned-repair-breakdown}
+\begin{tabular}{llrrrrrr}
+\toprule
+Target & Feedback & WA & CE & RE & TLE & MLE & Overall \\
+\midrule
+Full program & None & -- & -- & -- & -- & -- & -- \\
+Full program & Raw & -- & -- & -- & -- & -- & -- \\
+Full program & Categorical & -- & -- & -- & -- & -- & -- \\
+Full program & Localized & -- & -- & -- & -- & -- & -- \\
+Full program & Structured & -- & -- & -- & -- & -- & -- \\
+Full program & Natural language & -- & -- & -- & -- & -- & -- \\
+Line patch & None & -- & -- & -- & -- & -- & -- \\
+Line patch & Raw & -- & -- & -- & -- & -- & -- \\
+Line patch & Categorical & -- & -- & -- & -- & -- & -- \\
+Line patch & Localized & -- & -- & -- & -- & -- & -- \\
+Line patch & Structured & -- & -- & -- & -- & -- & -- \\
+Line patch & Natural language & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Threats to Validity}
+
+The study may be affected by dataset bias, language-specific diagnostic formats, benchmark-specific test coverage, and model sensitivity to prompt wording. These threats will be expanded after the pilot experiments.
+
+\section{Conclusion}
+
+This work explores whether execution feedback can be compressed into compact, repair-relevant representations for neural program repair. If successful, the approach can reduce context cost, improve robustness, and provide a practical bridge between execution-grounded program analysis and neural repair models.
+
+\nocite{placeholder}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

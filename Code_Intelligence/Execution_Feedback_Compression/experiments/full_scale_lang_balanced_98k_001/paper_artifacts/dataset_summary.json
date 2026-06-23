@@ -1,0 +1,46 @@
+{
+  "records": 98000,
+  "problems": 2489,
+  "languages": [
+    "C",
+    "C++",
+    "Java",
+    "Python"
+  ],
+  "error_types": [
+    "WA",
+    "CE",
+    "RE",
+    "TLE",
+    "MLE"
+  ],
+  "by_error_type": {
+    "WA": 25231,
+    "TLE": 25231,
+    "CE": 17173,
+    "RE": 25229,
+    "MLE": 5136
+  },
+  "by_language_error_type": {
+    "C::WA": 6086,
+    "C::CE": 6086,
+    "C::RE": 6086,
+    "C::TLE": 6086,
+    "C::MLE": 156,
+    "C++::WA": 5193,
+    "C++::CE": 5193,
+    "C++::RE": 5192,
+    "C++::TLE": 5193,
+    "C++::MLE": 3729,
+    "Java::WA": 5894,
+    "Java::CE": 5894,
+    "Java::RE": 5893,
+    "Java::TLE": 5893,
+    "Java::MLE": 926,
+    "Python::WA": 8058,
+    "Python::CE": 0,
+    "Python::RE": 8058,
+    "Python::TLE": 8059,
+    "Python::MLE": 325
+  }
+}

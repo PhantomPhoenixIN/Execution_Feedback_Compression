@@ -1,0 +1,116 @@
+{
+  "created_at": "2026-06-22T05:26:44.884879+00:00",
+  "input": "..\\Datasets\\Project_CodeNet\\final_codenet_bugfix_pairs_alllangs_with_diffs.jsonl",
+  "languages": [
+    "Python",
+    "Java",
+    "C++",
+    "C"
+  ],
+  "statuses": [
+    "WA",
+    "CE",
+    "RE",
+    "TLE",
+    "MLE"
+  ],
+  "targets": {
+    "Python::WA": 8058,
+    "Python::RE": 8058,
+    "Python::TLE": 8059,
+    "Python::MLE": 325,
+    "Java::WA": 5894,
+    "Java::CE": 5894,
+    "Java::RE": 5893,
+    "Java::TLE": 5893,
+    "Java::MLE": 926,
+    "C++::WA": 5193,
+    "C++::CE": 5193,
+    "C++::RE": 5192,
+    "C++::TLE": 5193,
+    "C++::MLE": 3729,
+    "C::WA": 6086,
+    "C::CE": 6086,
+    "C::RE": 6086,
+    "C::TLE": 6086,
+    "C::MLE": 156
+  },
+  "seed": 20260622,
+  "split_unit": "problem_id",
+  "split_ratios": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "filters": {
+    "require_tests": true,
+    "max_buggy_code_chars": 5000,
+    "max_fixed_code_chars": 5000
+  },
+  "selected_total": 98000,
+  "selected_by_language_status": {
+    "Python::WA": 8058,
+    "Python::CE": 0,
+    "Python::RE": 8058,
+    "Python::TLE": 8059,
+    "Python::MLE": 325,
+    "Java::WA": 5894,
+    "Java::CE": 5894,
+    "Java::RE": 5893,
+    "Java::TLE": 5893,
+    "Java::MLE": 926,
+    "C++::WA": 5193,
+    "C++::CE": 5193,
+    "C++::RE": 5192,
+    "C++::TLE": 5193,
+    "C++::MLE": 3729,
+    "C::WA": 6086,
+    "C::CE": 6086,
+    "C::RE": 6086,
+    "C::TLE": 6086,
+    "C::MLE": 156
+  },
+  "selected_by_error_type": {
+    "CE": 17173,
+    "RE": 25229,
+    "WA": 25231,
+    "TLE": 25231,
+    "MLE": 5136
+  },
+  "split_records": {
+    "train": 80031,
+    "validation": 9517,
+    "test": 8452
+  },
+  "split_problems": {
+    "train": 1991,
+    "validation": 249,
+    "test": 249
+  },
+  "skipped": {
+    "missing_tests": 62658,
+    "buggy_too_long": 43079,
+    "fixed_too_long": 7154
+  },
+  "seen": {
+    "C::WA": 81301,
+    "C::RE": 12644,
+    "C::CE": 18022,
+    "C::TLE": 7631,
+    "C++::WA": 885006,
+    "C++::CE": 122963,
+    "C++::RE": 105558,
+    "C++::TLE": 94669,
+    "Java::CE": 17434,
+    "Java::WA": 65481,
+    "Java::RE": 15694,
+    "Python::WA": 299343,
+    "Python::RE": 119469,
+    "Python::TLE": 84753,
+    "C++::MLE": 3729,
+    "Java::TLE": 9023,
+    "Java::MLE": 926,
+    "Python::MLE": 325,
+    "C::MLE": 156
+  }
+}
