@@ -1,30 +1,30 @@
 # Large/private datasets
-Code_Intelligence/Datasets/
+Code_Intelligence/
 **/Datasets/
 
 # Experiment outputs that are too large or reproducible
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/model_runs/
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/checkpoints/
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/model/
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.bin
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.safetensors
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.pt
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.pth
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.ckpt
+experiments/**/model_runs/
+experiments/**/checkpoints/
+experiments/**/model/
+experiments/**/*.bin
+experiments/**/*.safetensors
+experiments/**/*.pt
+experiments/**/*.pth
+experiments/**/*.ckpt
 
 # External benchmark downloads should be scripted, not vendored
-Code_Intelligence/Execution_Feedback_Compression/external/
+external/
 
 # Large generated repair-data JSONL files
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/*.jsonl
+experiments/**/*.jsonl
 
 # Generated figures will be added only after final results are ready
-Code_Intelligence/Execution_Feedback_Compression/experiments/**/paper_artifacts/figures/
+experiments/**/paper_artifacts/figures/
 
 # Old pilot/full-scale run folders are retained locally but not versioned
-Code_Intelligence/Execution_Feedback_Compression/experiments/pilot_*/
-Code_Intelligence/Execution_Feedback_Compression/experiments/full_scale_multilang_001/
-Code_Intelligence/Execution_Feedback_Compression/experiments/full_scale_multilang_100k_001/
+experiments/pilot_*/
+experiments/full_scale_multilang_001/
+experiments/full_scale_multilang_100k_001/
 
 # LaTeX/build intermediates
 *.aux
