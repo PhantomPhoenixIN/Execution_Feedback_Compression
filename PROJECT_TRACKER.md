@@ -117,6 +117,7 @@ Raw execution feedback is verbose and noisy. Compressed feedback representations
 | 2026-06-23 | full98k-run-name-001 | Named the full line-patch CodeT5 sweep | Official run group: `FULL98K_CodeT5_Patch_FeedbackSweep_v1`; condition run folders use `FULL98K_CodeT5_Patch_v1_<condition>_e1_val` |
 | 2026-06-23 | full98k-train-policy-001 | Switched CodeT5 sweep config back to full training | Training uses the full line-patch training split of 78,069 instances, not the `balanced_train_500` slice; validation uses all 9,299 instances |
 | 2026-06-23 | full98k-local-data-001 | Copied ignored full line-patch JSONL files into flattened repo layout | Full JSONL files exist locally under `experiments/full_scale_lang_balanced_98k_001/repair_patch_status_no_desc` and remain ignored by Git |
+| 2026-06-23 | full98k-none-training-001 | Launched full no-feedback CodeT5 line-patch run | Run name `FULL98K_CodeT5_Patch_v1_none_e1_val`; resumed from `checkpoint-70`; background PID recorded in ignored `process.pid`; logs written to ignored `train_stdout.log` and `train_stderr.log` |
 
 ## Decisions
 
