@@ -114,6 +114,9 @@ Raw execution feedback is verbose and noisy. Compressed feedback representations
 | 2026-06-22 | codet5-sweep-config-001 | Added reproducible CodeT5 line-patch feedback sweep config | Saved in `configs/codet5_patch_feedback_sweep_balanced_98k.json`; commands are printed by `scripts/print_codet5_sweep_commands.py` |
 | 2026-06-22 | feedback-length-001 | Added feedback length analysis table | Validation feedback lengths saved in `experiments/full_scale_lang_balanced_98k_001/feedback_compression_patch_validation.json`; manuscript compiles with table |
 | 2026-06-22 | codet5-patch-none-resume-001 | Started no-feedback CodeT5 line-patch baseline on balanced corpus | CPU run reached step 77 before timeout; latest saved checkpoint is `experiments/full_scale_lang_balanced_98k_001/model_runs/codet5_patch_none_e1_val/checkpoints/checkpoint-70`; rerun resumes from there |
+| 2026-06-23 | full98k-run-name-001 | Named the full line-patch CodeT5 sweep | Official run group: `FULL98K_CodeT5_Patch_FeedbackSweep_v1`; condition run folders use `FULL98K_CodeT5_Patch_v1_<condition>_e1_val` |
+| 2026-06-23 | full98k-train-policy-001 | Switched CodeT5 sweep config back to full training | Training uses the full line-patch training split of 78,069 instances, not the `balanced_train_500` slice; validation uses all 9,299 instances |
+| 2026-06-23 | full98k-local-data-001 | Copied ignored full line-patch JSONL files into flattened repo layout | Full JSONL files exist locally under `experiments/full_scale_lang_balanced_98k_001/repair_patch_status_no_desc` and remain ignored by Git |
 
 ## Decisions
 
@@ -180,7 +183,7 @@ Raw execution feedback is verbose and noisy. Compressed feedback representations
 
 ## Current Immediate Tasks
 
-1. Continue the resume-safe no-feedback CodeT5 line-patch baseline from `checkpoint-70`.
+1. Continue the full-run no-feedback CodeT5 line-patch baseline from `FULL98K_CodeT5_Patch_v1_none_e1_val/checkpoints/checkpoint-70`.
 2. Generate validation predictions and text diagnostics after the model finishes.
 3. Run raw/categorical/localized/structured/natural-language line-patch baselines using the same command template.
 4. Add external benchmark analysis, preferably QuixBugs Python, for a recognizable validation set.

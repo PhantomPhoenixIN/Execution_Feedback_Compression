@@ -1,9 +1,11 @@
 {
-  "run_group": "codet5_patch_feedback_sweep_balanced_98k",
+  "run_group": "FULL98K_CodeT5_Patch_FeedbackSweep_v1",
+  "run_prefix": "FULL98K_CodeT5_Patch_v1",
   "dataset": "experiments/full_scale_lang_balanced_98k_001/repair_patch_status_no_desc",
-  "train_subdir": "balanced_train_500",
-  "train_subset_records": 8884,
+  "train_subdir": null,
+  "train_records": 78069,
   "validation_records": 9299,
+  "test_records": 8171,
   "target": "line_patch",
   "model": "Salesforce/codet5-small",
   "seed": 42,
@@ -25,7 +27,8 @@
     "natural_language"
   ],
   "selection_protocol": {
-    "validation": "Generate validation predictions for all six feedback conditions.",
+    "training": "Train on the full language-balanced 98K corpus line-patch training split, not on the balanced_train_500 slice.",
+    "validation": "Generate validation predictions for all six feedback conditions on the full held-out validation split.",
     "test": "Evaluate the held-out test split only after selecting/reporting the planned comparison set.",
     "reporting": "Report full-program and line-patch results separately, with WA/CE/RE/TLE/MLE breakdowns."
   },
