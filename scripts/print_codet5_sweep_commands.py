@@ -18,9 +18,10 @@ def main() -> None:
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
     dataset = Path(config["dataset"])
+    train_dir = dataset / config["train_subdir"] if config.get("train_subdir") else dataset
     for condition in config["feedback_conditions"]:
         run_dir = args.output_dir / f"codet5_patch_{condition}_e{config['epochs']}_val"
-        train = dataset / f"{condition}_train.jsonl"
+        train = train_dir / f"{condition}_train.jsonl"
         validation = dataset / f"{condition}_validation.jsonl"
         cmd = (
             f"{PYTHON} scripts\\train_codet5_repair.py "

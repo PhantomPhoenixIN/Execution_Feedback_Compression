@@ -1,6 +1,6 @@
 {
-  "input": "Code_Intelligence\\Execution_Feedback_Compression\\experiments\\full_scale_lang_balanced_98k_001\\repair_patch_status_no_desc\\none_train.jsonl",
-  "output": "experiments\\full_scale_lang_balanced_98k_001\\repair_patch_status_no_desc\\balanced_train_500\\none_train.jsonl",
+  "input": "Code_Intelligence\\Execution_Feedback_Compression\\experiments\\full_scale_lang_balanced_98k_001\\repair_patch_status_no_desc\\categorical_train.jsonl",
+  "output": "experiments\\full_scale_lang_balanced_98k_001\\repair_patch_status_no_desc\\balanced_train_500\\categorical_train.jsonl",
   "seed": 20260623,
   "per_language_error": 500,
   "selected_records": 8884,

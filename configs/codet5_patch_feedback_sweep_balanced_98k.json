@@ -1,6 +1,9 @@
 {
   "run_group": "codet5_patch_feedback_sweep_balanced_98k",
   "dataset": "experiments/full_scale_lang_balanced_98k_001/repair_patch_status_no_desc",
+  "train_subdir": "balanced_train_500",
+  "train_subset_records": 8884,
+  "validation_records": 9299,
   "target": "line_patch",
   "model": "Salesforce/codet5-small",
   "seed": 42,
