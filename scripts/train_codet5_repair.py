@@ -63,6 +63,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--generate-only", action="store_true")
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--save-steps", type=int, default=50)
+    parser.add_argument(
+        "--device",
+        choices=["auto", "cpu", "cuda"],
+        default="auto",
+        help="Training device. 'auto' uses CUDA when the installed PyTorch build exposes it.",
+    )
     return parser.parse_args()
 
 
@@ -158,6 +164,9 @@ def main() -> None:
     args = parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     set_seed(args.seed)
+    use_cpu = args.device == "cpu" or (args.device == "auto" and not torch.cuda.is_available())
+    if args.device == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError("CUDA was requested, but the installed PyTorch build does not expose CUDA.")
 
     saved_model_dir = args.output_dir / "model"
     can_reuse_model = saved_model_dir.exists() and (saved_model_dir / "config.json").exists()
@@ -223,7 +232,7 @@ def main() -> None:
         evaluation_strategy="no",
         report_to=[],
         fp16=False,
-        use_cpu=True,
+        use_cpu=use_cpu,
     )
 
     trainer = Seq2SeqTrainer(
@@ -251,6 +260,7 @@ def main() -> None:
         "epochs": args.epochs,
         "batch_size": args.batch_size,
         "learning_rate": args.learning_rate,
+        "device": "cpu" if use_cpu else "cuda",
     }
     (args.output_dir / "train_metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
     write_predictions(

@@ -118,6 +118,9 @@ Raw execution feedback is verbose and noisy. Compressed feedback representations
 | 2026-06-23 | full98k-train-policy-001 | Switched CodeT5 sweep config back to full training | Training uses the full line-patch training split of 78,069 instances, not the `balanced_train_500` slice; validation uses all 9,299 instances |
 | 2026-06-23 | full98k-local-data-001 | Copied ignored full line-patch JSONL files into flattened repo layout | Full JSONL files exist locally under `experiments/full_scale_lang_balanced_98k_001/repair_patch_status_no_desc` and remain ignored by Git |
 | 2026-06-23 | full98k-none-training-001 | Launched full no-feedback CodeT5 line-patch run | Run name `FULL98K_CodeT5_Patch_v1_none_e1_val`; resumed from `checkpoint-70`; background PID recorded in ignored `process.pid`; logs written to ignored `train_stdout.log` and `train_stderr.log` |
+| 2026-06-29 | full98k-none-complete-001 | Completed the full no-feedback CodeT5 line-patch run | Validation generation completed for 9,299 records; exact patch match is 5/9,299, confirming this is a difficult low-resource baseline |
+| 2026-06-29 | full98k-sweep-runner-001 | Added a resume-safe sequential runner for the remaining feedback conditions | `scripts/run_full98k_codet5_sweep.ps1` skips completed conditions, restarts interrupted ones from checkpoints, and logs sweep progress |
+| 2026-06-29 | codet5-device-policy-001 | Made training device explicit and automatic | `scripts/train_codet5_repair.py` now supports `--device auto/cpu/cuda`; current PyTorch install is CPU-only (`torch 2.5.1+cpu`) |
 
 ## Decisions
 
@@ -145,6 +148,7 @@ Raw execution feedback is verbose and noisy. Compressed feedback representations
 - If training is interrupted before the final model is saved, rerunning the same command resumes from the latest checkpoint automatically.
 - If `<output-dir>/model/config.json` already exists, rerunning the same command reuses the saved model and only completes missing predictions.
 - `--overwrite` intentionally disables resume behavior and starts fresh.
+- `scripts/run_full98k_codet5_sweep.ps1` runs the six feedback conditions sequentially, skips conditions with `generation_metrics.json`, and restarts interrupted conditions from their latest checkpoints.
 - Qwen prompting scripts append only missing prediction IDs unless `--overwrite` is passed.
 - Full-code and patch evaluation scripts append only missing evaluated IDs and recompute metrics over all accumulated outputs.
 
@@ -184,7 +188,7 @@ Raw execution feedback is verbose and noisy. Compressed feedback representations
 
 ## Current Immediate Tasks
 
-1. Continue the full-run no-feedback CodeT5 line-patch baseline from `FULL98K_CodeT5_Patch_v1_none_e1_val/checkpoints/checkpoint-70`.
-2. Generate validation predictions and text diagnostics after the model finishes.
-3. Run raw/categorical/localized/structured/natural-language line-patch baselines using the same command template.
+1. Run raw/categorical/localized/structured/natural-language line-patch baselines using the sequential full-sweep runner.
+2. Aggregate full validation metrics across the six feedback conditions.
+3. Decide whether the very low exact-match baseline requires a smaller edit-target variant, execution-based validation, or a stronger model before paper-facing claims.
 4. Add external benchmark analysis, preferably QuixBugs Python, for a recognizable validation set.
